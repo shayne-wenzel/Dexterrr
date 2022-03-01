@@ -36,6 +36,7 @@ for (let i = 0; i < pokemonList.length; i++) {
 //checks height, if more than 2 it writes "...big!"
 
   if (pokemonList[i].height >2) {
-    document.write(" - Wow that's big!");
+   document.write(" - Wow that's big!");
  }
+   document.write ("<br/>") ;
 };
