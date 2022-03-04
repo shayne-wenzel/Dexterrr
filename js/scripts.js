@@ -28,15 +28,7 @@ let pokemonList = [{
 },
 ];
 
-//loops through list
-
-for (let i = 0; i < pokemonList.length; i++) {
-   document.write(pokemonList[i].name + " height: "+ pokemonList[i].height + ", ");
-
-//checks height, if more than 2 it writes "...big!"
-
-  if (pokemonList[i].height >2) {
-   document.write(" - Wow that's big!");
- }
-   document.write ("<br/>") ;
-};
+pokemonList.forEach(function(pokemon){
+document.write(pokemon.name + " height: "+ pokemon.height + ", ");
+document.write ("<br/>");
+});
