@@ -1,5 +1,5 @@
-//list of pokemon
-let pokemonList = [{
+let pokemonRepository = (function () {
+  let pokemonList = [{
   name: 'Bulbasaur',
   height: 0.7,
   weight: 6.9,
@@ -28,7 +28,25 @@ let pokemonList = [{
 },
 ];
 
-pokemonList.forEach(function(pokemon){
-document.write(pokemon.name + " height: "+ pokemon.height + ", ");
-document.write ("<br/>");
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll
+  };
+})();
+
+pokemonRepository.getAll().forEach(function(pokemon){
+  document.write(pokemon.name + " height: "+ pokemon.height + ", ");
+  document.write ("<br/>");
 });
+
+console.log(pokemonRepository.getAll());
+pokemonRepository.add({ name: 'Raichu' });
+console.log(pokemonRepository.getAll());
