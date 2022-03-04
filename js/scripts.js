@@ -1,3 +1,4 @@
+// IIFE
 let pokemonRepository = (function () {
   let pokemonList = [{
   name: 'Bulbasaur',
@@ -27,7 +28,7 @@ let pokemonRepository = (function () {
   type: ['dragon']
 },
 ];
-
+// Public functions
   function add(pokemon) {
     pokemonList.push(pokemon);
   }
@@ -41,12 +42,12 @@ let pokemonRepository = (function () {
     getAll: getAll
   };
 })();
-
+// Updated forEach loop
 pokemonRepository.getAll().forEach(function(pokemon){
   document.write(pokemon.name + " height: "+ pokemon.height + ", ");
   document.write ("<br/>");
 });
-
+// Add object
 console.log(pokemonRepository.getAll());
 pokemonRepository.add({ name: 'Raichu' });
 console.log(pokemonRepository.getAll());
