@@ -2,6 +2,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let modalContainer = document.querySelector('#modal-container');
   // Public functions
   // Adds and validates objects
   function add (pokemon) {
@@ -66,19 +67,77 @@ let pokemonRepository = (function () {
     });
   }
 
+function showModal(name, height, type) {
+
+modalContainer.innerHTML = type;
+
+  let modal = document.createElement('div');
+  modal.classList.add('modal');
+
+  // Add the new modal content
+  let closeButtonElement = document.createElement('button');
+  closeButtonElement.classList.add('modal-close');
+  closeButtonElement.innerText = 'X';
+  closeButtonElement.addEventListener('click', hideModal);
+
+
+  let titleElement = document.createElement('h1');
+  titleElement.innerText = name;
+
+  let contentElement = document.createElement('p');
+  contentElement.innerText = height;
+
+
+
+
+
+  modal.appendChild(closeButtonElement);
+  modal.appendChild(titleElement);
+  modal.appendChild(contentElement);
+
+  modalContainer.appendChild(modal);
+
+  modalContainer.classList.add('is-visible');
+}
+
+document.querySelector('button').addEventListener('click', () => {
+  showModal();
+});
+
   // Shows details in console form load function
   function showDetails (pokemon) {
     loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      showModal(pokemon.name, pokemon.height, pokemon.types, pokemon.imageUrl);
     });
   }
+
+  function hideModal() {
+  let modalContainer = document.querySelector('#modal-container');
+  modalContainer.classList.remove('is-visible');
+}
+  window.addEventListener('keydown', (e) => {
+  let modalContainer = document.querySelector('#modal-container');
+  if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+    hideModal();
+  }
+});
+
+  modalContainer.addEventListener('click', (e) => {
+  let target = e.target;
+  if (target === modalContainer) {
+    hideModal();
+  }
+});
+
   return {
     add: add,
     getAll: getAll,
     loadList: loadList,
     loadDetaills: loadDetails,
     addListItem: addListItem,
-    showDetails: showDetails
+    showDetails: showDetails,
+    showModal: showModal,
+    hideModal: hideModal
   };
 })();
 
