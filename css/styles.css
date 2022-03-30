@@ -50,6 +50,13 @@ body {
   text-align: left;
 }
 
+.image-class {
+  width: 30%;
+  height: auto;
+  margin-right: 40px;
+  border-radius: 50% ;
+}
+
 .modal-close {
   float: right;
   -webkit-appearance: none;
